@@ -10,26 +10,29 @@
 <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet@1.0.0"></script>
 <video playsinline autoplay></video>
 <button>Take snapshot</button>
-<canvas></canvas>	
+<canvas></canvas>
+<span></span>	
 <script>
 video = document.querySelector('video');
 canvas = document.querySelector('canvas');
+button = document.querySelector('button');
 canvas.width=48;
 canvas.height=48;
 canvas.style.filter='grayscale(1)';
 video.style.transform='scaleX(-1)';
 
+
 span = document.querySelector('span');
-span.style.fontSize = '48px';
+span.style.fontSize='48px';
 
 const LABELS = {
-        0: '🤬', // angry
-        1: '🤢', // disgust
-        2: '😱', // fear
-        3: '😄', // happy
-        4: '😢', // sad
-        5: '😲', // surprise
-        6: '😐' // neutral
+        0: '🤬', 
+        1: '🤢', 
+        2: '😱', 
+        3: '😄', 
+        4: '😢', 
+        5: '😲', 
+        6: '😐' 
 	}
 
 async function predict() {
@@ -49,7 +52,6 @@ async function predict() {
         span.innerHTML = LABELS[i];
       }
 
-button = document.querySelector('button');
 
 button.onclick = function() {
         w = video.videoWidth;
@@ -63,6 +65,11 @@ button.onclick = function() {
 
         span.innerHTML = '⌛';
         predict();
+};
+
+constraints = {
+  audio: false,
+  video: true
 };
 
 function handleSuccess(stream) {
