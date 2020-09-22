@@ -36,7 +36,7 @@ const LABELS = {
 	}
 
 async function predict() {
-        const model = await tf.loadLayersModel('../../project/aiffel-lms/E13_Imoji/model/model.json');
+        const model = await tf.loadLayersModel('./model/model.json');
 
         image = tf.browser.fromPixels(canvas);
         console.log(image);
